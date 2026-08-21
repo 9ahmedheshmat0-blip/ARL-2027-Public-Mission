@@ -13,3 +13,35 @@ def monitor_following_distance(distances: list[float], speeds: list[float]) -> t
             - tailgate_incidents: number of separate instances the car started tailgating
     """
     pass
+ distance = [30.0 , 20.0 , 20.0 , 30.0 , 15.0, 10.0]
+speed = [50.0 , 50.0 , 50.0 , 50.0 , 50.0, 50.0]
+global tailg_inci , tailg_sec , min_distance, first
+first = True
+tailg_sec= 0
+min_distance = 0
+tailg_inci = 0
+def x(distance, speed):
+    global tailg_inci , tailg_sec , min_distance, first
+   
+    previous_tailgating= False
+    
+    for i , s in zip(distance, speed):
+        safe_distance = 0.5 * s
+        if i < safe_distance:
+            tailg_sec += 1
+            if not previous_tailgating:
+                tailg_inci +=1
+                
+            
+            if first:
+                min_distance = i
+                first = False
+               
+            if min_distance > i:
+                min_distance = i
+                previous_tailgating= True
+        else:
+            previous_tailgating= False
+                
+    print(tailg_inci, tailg_sec, min_distance)
+x(distance, speed)
