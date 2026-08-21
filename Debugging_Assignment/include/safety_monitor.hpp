@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <optional>
 #include <vector>
 
 namespace arl {
@@ -48,5 +49,4 @@ bool shouldEmergencyBrake(
     const std::vector<Obstacle>& obstacles,
     double speedKph,
     const SafetyConfig& config);
-
 }  // namespace arl
